@@ -49,20 +49,13 @@ scalar BigDecimal
 
 scalar BigInt
 
-"""The block at which the query should be executed."""
+input BlockChangedFilter {
+  number_gte: Int!
+}
+
 input Block_height {
-  """Value containing a block hash"""
   hash: Bytes
-
-  """Value containing a block number"""
   number: Int
-
-  """
-  Value containing the minimum block number. 
-  In the case of `number_gte`, the query will be executed on the latest block only if
-  the subgraph has progressed to or past the minimum block number.
-  Defaults to the latest block when omitted.
-  """
   number_gte: Int
 }
 
@@ -106,11 +99,17 @@ input NFT_filter {
   tokenURI_in: [String!]
   tokenURI_not_in: [String!]
   tokenURI_contains: String
+  tokenURI_contains_nocase: String
   tokenURI_not_contains: String
+  tokenURI_not_contains_nocase: String
   tokenURI_starts_with: String
+  tokenURI_starts_with_nocase: String
   tokenURI_not_starts_with: String
+  tokenURI_not_starts_with_nocase: String
   tokenURI_ends_with: String
+  tokenURI_ends_with_nocase: String
   tokenURI_not_ends_with: String
+  tokenURI_not_ends_with_nocase: String
   price: BigInt
   price_not: BigInt
   price_gt: BigInt
@@ -119,6 +118,9 @@ input NFT_filter {
   price_lte: BigInt
   price_in: [BigInt!]
   price_not_in: [BigInt!]
+
+  """Filter for the block changed event."""
+  _change_block: BlockChangedFilter
 }
 
 enum NFT_orderBy {
@@ -213,6 +215,9 @@ type _Block_ {
 
   """The block number"""
   number: Int!
+
+  """Integer representation of the timestamp stored in blocks for the chain"""
+  timestamp: Int
 }
 
 """The type for the top-level _meta field"""

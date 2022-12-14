@@ -29,6 +29,8 @@ const useNFTMarket = () => {
       });
       if (response.status == 201) {
         const json = await response.json();
+        console.log("tokenURI:",json.uri);
+        
         const transaction: TransactionResponse = await nftMarket.createNFT(
           json.uri
         );

@@ -19,7 +19,8 @@ const OwnedPage = () => {
     signer &&
     ((ownedNFTs && ownedNFTs.length) ||
       (ownedListedNFTs && ownedListedNFTs.length));
-
+   console.log(ownedNFTs);
+   
   return (
     <div className="flex w-full flex-col">
       {notConnected && <EmptyState>Connect your wallet</EmptyState>}

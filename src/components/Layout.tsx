@@ -7,11 +7,12 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="relative flex h-full w-full flex-col pt-20">
+    <div className="relative flex h-full w-full flex-col  ">
       <TopBar />
-      <div className="flex h-full w-full overflow-y-auto overflow-x-hidden px-4">
+      <div className="flex h-full w-full overflow-y-auto overflow-x-hidden ">
         {children}
       </div>
+      
     </div>
   );
 };
